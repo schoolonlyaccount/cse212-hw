@@ -1,3 +1,5 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 public static class Arrays
 {
     /// <summary>
@@ -8,12 +10,17 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Step 1: Create an empty fixed array with the 'length' variable (from the parameters of this function) as its capacity.
+        double[] numbers = new double[length];
 
-        return []; // replace this return statement with your own
+        // Step 2: Create a for loop (repeats 'length' times) that fills the fixed array with multiples of 'number'. Example: [3, 6, 9, 12, 15]
+        for (int i = 0; i < length; ++i)
+        {
+            numbers[i] = i == 0 ? number : numbers[i - 1] + number;
+        }
+
+        // Step 3: Return the filled in array
+        return numbers;
     }
 
     /// <summary>
@@ -25,9 +32,25 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Step 1: Create an empty (temporary) list array
+        List<int> temp = new();
+
+        // Step 2: Create a for loop that adds the last 'amount' elements from the original array to the temporary array.
+        for (int i = data.Count - amount; i < data.Count; ++i)
+        {
+            temp.Add(data[i]);
+        }
+
+        // Step 3: Create a for loop that adds the elements you skipped previously from the original array to the temporary array.
+        for (int i = 0; i < data.Count - amount; ++i)
+        {
+            temp.Add(data[i]);
+        }
+
+        // Step 4: Clear the original array
+        data.Clear();
+
+        // Step 5: Add all elements from the temporary array to the original array
+        data.AddRange(temp);
     }
 }
