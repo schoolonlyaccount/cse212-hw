@@ -4,6 +4,7 @@ public class Translator
     {
         var englishToGerman = new Translator();
         englishToGerman.AddWord("House", "Haus");
+        englishToGerman.AddWord("House", "Haus"); // <-- Checking to see if duplicate doesn't work
         englishToGerman.AddWord("Car", "Auto");
         englishToGerman.AddWord("Plane", "Flugzeug");
         Console.WriteLine(englishToGerman.Translate("Car")); // Auto
@@ -25,6 +26,7 @@ public class Translator
     public void AddWord(string fromWord, string toWord)
     {
         // ADD YOUR CODE HERE
+        _words[fromWord] = toWord;
     }
 
     /// <summary>
@@ -35,6 +37,6 @@ public class Translator
     public string Translate(string fromWord)
     {
         // ADD YOUR CODE HERE
-        return "";
+        return _words.ContainsKey(fromWord) ? _words[fromWord] : "???";
     }
 }
